@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Ledger | FraudGuard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-shield-virus"></i>
+                <span>FraudGuard</span>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="transaction.html" class="active"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="security.html"><i class="fas fa-user-shield"></i> Security</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="container">
+                <header class="table-header">
+                    <div class="title-section" style="display: flex; align-items: center; gap: 15px;">
+                        <button class="toggle-btn sidebarToggle" style="margin-right: 5px;"><i class="fas fa-bars"></i></button>
+                        <div>
+                            <h1 style="margin: 0;"><i class="fas fa-list-check"></i> Transaction Logs</h1>
+                            <p style="margin: 5px 0 0 0;">Audit trail of all analyzed payments</p>
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <div class="search-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="txnSearch" placeholder="Search Account or ID..." onkeyup="searchTable()">
+                        </div>
+                        <button class="export-btn"><i class="fas fa-download"></i> Export CSV</button>
+                    </div>
+                </header>
+
+                <div class="table-card">
+                    <table id="txnTable">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Transaction ID</th>
+                                <th>Account</th>
+                                <th>Amount</th>
+                                <th>Risk Level</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="txnLogBody">
+                            <tr>
+                                <td>08 Apr 2026, 14:20</td>
+                                <td>#TXN-8821</td>
+                                <td>ACC-100293</td>
+                                <td>$4,500.00</td>
+                                <td><span class="risk-badge low">12%</span></td>
+                                <td><span class="status-verified">Verified</span></td>
+                            </tr>
+                            <tr>
+                                <td>08 Apr 2026, 15:10</td>
+                                <td>#TXN-8825</td>
+                                <td>ACC-449201</td>
+                                <td>$12,000.00</td>
+                                <td><span class="risk-badge high">94%</span></td>
+                                <td><span class="status-blocked">Blocked</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="transaction.js"></script>
+    <script src="navigation.js"></script>
+</body>
+</html>

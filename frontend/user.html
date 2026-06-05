@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login | GuardPay</title>
+    <link rel="stylesheet" href="user.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="split-screen">
+        <div class="left-side">
+            <div class="branding">
+                <i class="fas fa-wallet"></i>
+                <h1>GuardPay</h1>
+                <p>Secure payments. Smarter protection.</p>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="login-box">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Enter your credentials to access your account</p>
+
+                <form id="userLoginForm">
+                    <div class="input-field">
+                        <label>Email Address</label>
+                        <input type="email" id="userEmail" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label>Password</label>
+                        <input type="password" id="userPass" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-helper">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
+                </form>
+
+                <div class="separator"><span>Or continue with</span></div>
+
+                <div class="social-login">
+                    <button class="social-btn"><i class="fab fa-google"></i></button>
+                    <button class="social-btn"><i class="fab fa-apple"></i></button>
+                </div>
+
+                <p class="signup-text">New here? <a href="#">Create an account</a></p>
+                <div id="msg" class="message"></div>
+            </div>
+        </div>
+    </div>
+    <script src="user.js"></script>
+</body>
+</html>

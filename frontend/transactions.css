@@ -1,0 +1,65 @@
+:root {
+    --bg: #0a0f1c;
+    --card: #161e2d;
+    --primary: #3b82f6;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --red: #ef4444;
+    --green: #10b981;
+}
+
+.container {
+    padding: 10px 20px;
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.title-section h1 { font-size: 1.8rem; margin-bottom: 5px; }
+.title-section p { color: var(--muted); }
+
+.action-bar { display: flex; gap: 15px; }
+
+.search-wrapper { position: relative; }
+.search-wrapper i { position: absolute; left: 12px; top: 12px; color: var(--muted); }
+.search-wrapper input {
+    background: var(--card);
+    border: 1px solid #334155;
+    padding: 10px 10px 10px 40px;
+    border-radius: 8px;
+    color: white;
+    width: 280px;
+}
+
+.export-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.table-card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+table { width: 100%; border-collapse: collapse; text-align: left; }
+th { background: #020617; padding: 18px; color: var(--muted); font-size: 12px; text-transform: uppercase; }
+td { padding: 18px; border-bottom: 1px solid #1e293b; font-size: 14px; }
+
+/* Status & Risk Styles */
+.risk-badge { padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+.risk-badge.low { background: rgba(16, 185, 129, 0.15); color: var(--green); }
+.risk-badge.high { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+
+.status-verified { color: var(--green); font-weight: 600; }
+.status-blocked { color: var(--red); font-weight: 600; }

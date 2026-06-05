@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraudGuard | Payment Security</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-shield-virus"></i>
+                <span>FraudGuard</span>
+            </div>
+            <nav>
+                <a href="index.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="transaction.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="security.html"><i class="fas fa-user-shield"></i> Security</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="header-left">
+                    <button id="sidebarToggle" class="toggle-btn"><i class="fas fa-bars"></i></button>
+                    <h2>Fraud Detection Dashboard</h2>
+                </div>
+                <div class="user-profile">
+                    <a href="admin.html"><i class="fas fa-user-shield"></i> admin Login</a>
+                     <a href="user.html"><i class="fas fa-cog"></i> User Login</a>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <p>Total Scanned</p>
+                    <h3 id="totalScanned">0</h3>
+                </div>
+                <div class="stat-card danger">
+                    <p>Fraud Blocked</p>
+                    <h3 id="fraudBlocked">0</h3>
+                </div>
+                <div class="stat-card success">
+                    <p>Trust Score</p>
+                    <h3 id="trustScore">100%</h3>
+                </div>
+            </section>
+
+            <div class="dashboard-body">
+                <section class="form-section">
+                    <h3>Analyze New Transaction</h3>
+                    <form id="fraudForm">
+                        <div class="input-group">
+                            <label>Transaction Amount ($)</label>
+                            <input type="number" id="amount" placeholder="e.g. 500.00" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Merchant Category</label>
+                            <select id="category">
+                                <option value="retail">Retail</option>
+                                <option value="online_service">Online Service</option>
+                                <option value="banking">Banking</option>
+                                <option value="entertainment">Entertainment</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Card Type</label>
+                            <input type="text" id="cardType" placeholder="Visa / Mastercard">
+                        </div>
+                        <button type="submit" id="analyzeBtn">Analyze Risk</button>
+                    </form>
+                </section>
+
+                <section class="result-section" id="resultDisplay">
+                    <div id="statusIcon"><i class="fas fa-fingerprint"></i></div>
+                    <h4 id="resultTitle">System Ready</h4>
+                    <p id="resultText">Enter data to check for fraudulent patterns.</p>
+                    <div class="progress-bar-container" id="progressContainer" style="display:none;">
+                        <div id="riskProgress"></div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script src="navigation.js"></script>
+    <!-- <script>
+        if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "admin.html";
+    }
+    </script> -->
+</body>
+</html>

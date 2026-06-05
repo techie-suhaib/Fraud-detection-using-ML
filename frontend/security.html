@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Configuration | FraudGuard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="security.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-shield-virus"></i>
+                <span>FraudGuard</span>
+            </div>
+            <nav>
+                <a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a href="transaction.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
+                <a href="security.html" class="active"><i class="fas fa-user-shield"></i> Security</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="container">
+                <header class="page-header">
+                    <div class="title-section" style="display: flex; align-items: center; gap: 15px;">
+                        <button class="toggle-btn sidebarToggle" style="margin-right: 5px;"><i class="fas fa-bars"></i></button>
+                        <div>
+                            <h1 style="margin: 0;"><i class="fas fa-user-shield"></i> Security Rules</h1>
+                            <p style="margin: 5px 0 0 0;">Configure automated fraud prevention thresholds</p>
+                        </div>
+                    </div>
+                    <button class="save-btn" onclick="saveSettings()">Save Changes</button>
+                </header>
+
+                <div class="grid-container">
+                    <section class="card">
+                        <h3>Detection Thresholds</h3>
+                        <div class="setting-item">
+                            <div class="info">
+                                <label>Active Fraud Model</label>
+                                <p>Select the machine learning model used for evaluation.</p>
+                            </div>
+                            <div class="control">
+                                <select id="activeModel" style="padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; background-color: white; font-family: inherit; font-size: 0.9rem; color: #334155; width: 100%; max-width: 200px; cursor: pointer; outline: none; transition: border-color 0.2s;">
+                                    <option value="random_forest">Random Forest</option>
+                                    <option value="decision_tree">Decision Tree</option>
+                                    <option value="logistic_regression">Logistic Regression</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="info">
+                                <label>Auto-Block Sensitivity</label>
+                                <p>Block transactions with risk score above this value.</p>
+                            </div>
+                            <div class="control">
+                                <input type="range" id="threshold" min="50" max="95" value="75">
+                                <span id="thresholdVal">75%</span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="info">
+                                <label>Flag for Review</label>
+                                <p>Transactions between 40% and 75% will be manually audited.</p>
+                            </div>
+                            <input type="checkbox" checked>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <h3>Regional Restrictions</h3>
+                        <div class="setting-item">
+                            <span>Block International Payments</span>
+                            <label class="switch">
+                                <input type="checkbox" id="blockInt">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <span>MFA Required for High Value</span>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section class="card wide">
+                        <h3>Account Blacklist</h3>
+                        <div class="blacklist-input">
+                            <input type="text" id="banAcc" placeholder="Enter Account ID to block...">
+                            <button onclick="addBlacklist()">Ban Account</button>
+                        </div>
+                        <ul class="blacklist-items" id="blacklist">
+                            <li>ACC-99201 <i class="fas fa-times" onclick="this.parentElement.remove()"></i></li>
+                            <li>ACC-44122 <i class="fas fa-times" onclick="this.parentElement.remove()"></i></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="security.js"></script>
+    <script src="navigation.js"></script>
+</body>
+</html>
