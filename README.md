@@ -1,2 +1,2 @@
-# Fraud-Detection-
-ML Project 
+# Fraud-detection-using-ML
+ML Project
