@@ -20,18 +20,6 @@ async function loadStats() {
 // Run on load
 document.addEventListener('DOMContentLoaded', () => {
     loadStats();
-    
-    // Check if user is logged in
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const userRole = localStorage.getItem("userRole");
-    
-    // Display header details if logged in
-    const profileIcon = document.querySelector('.user-profile');
-    if (isLoggedIn === "true" && profileIcon) {
-        const email = localStorage.getItem("userEmail") || "user@test.com";
-        const name = localStorage.getItem("userName") || "User";
-        profileIcon.title = `Logged in as ${name} (${email})`;
-    }
 });
 
 // Form submission handler
@@ -98,15 +86,18 @@ document.getElementById('fraudForm').addEventListener('submit', async function(e
             container.style.display = 'block';
             progress.style.width = score + "%";
 
-            if (isFraud) {
+            // Determine risk level based on score threshold
+            if (score >= 70) {
+                // High risk
                 title.innerText = "High Risk Blocked";
                 title.style.color = "#ef4444";
                 
-                let rulesMsg = res.rules_triggered.length > 0 ? ` [Rules: ${res.rules_triggered.join(', ')}]` : '';
+                let rulesMsg = res.rules_triggered && res.rules_triggered.length > 0 ? ` [Rules: ${res.rules_triggered.join(', ')}]` : '';
                 text.innerText = `Danger: Risk Score is ${score}%. Potential fraudulent patterns detected.${rulesMsg}`;
                 icon.innerHTML = '<i class="fas fa-exclamation-triangle" style="color:#ef4444"></i>';
                 progress.style.backgroundColor = "#ef4444";
             } else {
+                // Low/medium risk (considered safe)
                 title.innerText = "Transaction Safe";
                 title.style.color = "#10b981";
                 text.innerText = `Verified: Risk Score is ${score}%. Transaction looks safe. Fund balance updated.`;

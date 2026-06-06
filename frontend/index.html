@@ -15,12 +15,27 @@
                 <i class="fas fa-shield-virus"></i>
                 <span>FraudGuard</span>
             </div>
+                <div id="loginLinks" class="login-links">
+                    <a href="admin.html"><i class="fas fa-user-shield"></i> Admin Login</a>
+                    <a href="user.html"><i class="fas fa-user"></i> User Login</a>
+                </div>
+
             <nav>
                 <a href="index.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
                 <a href="transaction.html"><i class="fas fa-exchange-alt"></i> Transactions</a>
                 <a href="security.html"><i class="fas fa-user-shield"></i> Security</a>
                 <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
             </nav>
+            <!-- Logged‑in user info and logout -->
+            <div id="sidebarUserMenu" class="user-menu" style="display:none; margin-top:auto; padding:1rem 0;">
+                <span id="sidebarUserInfo" class="sidebar-user-info">
+                    <i class="fas fa-user-circle" style="color:var(--primary); font-size:1.1rem;"></i>
+                    <span id="sidebarUserLabel">User</span>
+                </span>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
         </aside>
 
         <main class="main-content">
@@ -29,11 +44,7 @@
                     <button id="sidebarToggle" class="toggle-btn"><i class="fas fa-bars"></i></button>
                     <h2>Fraud Detection Dashboard</h2>
                 </div>
-                <div class="user-profile">
-                    <a href="admin.html"><i class="fas fa-user-shield"></i> admin Login</a>
-                     <a href="user.html"><i class="fas fa-cog"></i> User Login</a>
-                    <i class="fas fa-user-circle"></i>
-                </div>
+
             </header>
 
             <section class="stats-grid">
