@@ -83,6 +83,20 @@
                             <label>Card Type</label>
                             <input type="text" id="cardType" placeholder="Visa / Mastercard">
                         </div>
+                        <div class="input-group">
+                            <label>Transaction Location</label>
+                            <select id="location">
+                                <option value="Local">Local</option>
+                                <option value="International">International</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Device Status</label>
+                            <select id="deviceStatus">
+                                <option value="same">Same Device (Linked)</option>
+                                <option value="new">New Device (Unlinked)</option>
+                            </select>
+                        </div>
                         <button type="submit" id="analyzeBtn">Analyze Risk</button>
                     </form>
                 </section>

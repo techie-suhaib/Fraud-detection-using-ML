@@ -41,7 +41,13 @@ document.getElementById('fraudForm').addEventListener('submit', async function(e
     // Collect data
     const amount = parseFloat(document.getElementById('amount').value);
     const category = document.getElementById('category').value;
-    const deviceId = localStorage.getItem('deviceId');
+    const deviceStatus = document.getElementById('deviceStatus').value;
+    const location = document.getElementById('location').value;
+    
+    let finalDeviceId = localStorage.getItem('deviceId');
+    if (deviceStatus === 'new') {
+        finalDeviceId = 'dev_new_' + Math.random().toString(36).substring(2, 11);
+    }
     const userId = localStorage.getItem('userId') || '2'; // Default to test user ID
 
     // Map Category to Transaction Type
@@ -51,9 +57,6 @@ document.getElementById('fraudForm').addEventListener('submit', async function(e
     } else if (category === 'retail') {
         txnType = 'PAYMENT';
     }
-
-    // Mock Location (10% chance of International for demonstration)
-    const location = Math.random() < 0.1 ? 'International' : 'Local';
 
     try {
         const response = await fetch('/api/transactions', {
@@ -66,7 +69,7 @@ document.getElementById('fraudForm').addEventListener('submit', async function(e
                 amount: amount,
                 transaction_type: txnType,
                 location: location,
-                device_id: deviceId,
+                device_id: finalDeviceId,
                 device_type: 'Desktop',
                 os: 'Windows'
             })
@@ -86,8 +89,8 @@ document.getElementById('fraudForm').addEventListener('submit', async function(e
             container.style.display = 'block';
             progress.style.width = score + "%";
 
-            // Determine risk level based on score threshold
-            if (score >= 70) {
+            // Determine risk level based on backend is_fraud decision
+            if (isFraud) {
                 // High risk
                 title.innerText = "High Risk Blocked";
                 title.style.color = "#ef4444";

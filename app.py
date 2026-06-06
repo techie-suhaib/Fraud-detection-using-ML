@@ -258,7 +258,7 @@ def api_add_transaction():
             fraud_score_modifier += 100.0
         else:
             rules_triggered.append("Unusual Location")
-            fraud_score_modifier += 20.0
+            fraud_score_modifier += 35.0
             
     # Check Device Rules
     # Look up if device_id is already linked to user
@@ -271,16 +271,16 @@ def api_add_transaction():
         rules_triggered.append("New Device Login")
         fraud_score_modifier += 25.0
         
-    # Check Velocity Rules (more than 3 transactions in the last 5 minutes)
-    five_min_ago = datetime.datetime.now() - datetime.timedelta(minutes=5)
+    # Check Velocity Rules (more than 2 payments in 60 seconds)
+    one_min_ago = datetime.datetime.now() - datetime.timedelta(seconds=60)
     recent_txn_count = execute_query(
         "SELECT COUNT(*) as count FROM transactions WHERE user_id = %s AND transaction_time >= %s;",
-        (user_id, five_min_ago),
+        (user_id, one_min_ago),
         fetch=True
     )[0]['count']
-    if recent_txn_count >= 3:
+    if recent_txn_count >= 2:
         rules_triggered.append("High Velocity")
-        fraud_score_modifier += 30.0
+        fraud_score_modifier += 50.0
         
     # Check High Amount Anomaly
     if amount > 10000.0:
@@ -340,7 +340,7 @@ def api_add_transaction():
     # 4. Compute Combined Score
     # Risk score combines the ML model probability and our rule-based heuristic weights
     total_risk_score = min(100.0, max(0.0, ml_score + fraud_score_modifier))
-    is_fraud = total_risk_score >= auto_block_threshold
+    is_fraud = (total_risk_score >= auto_block_threshold) or ("High Velocity" in rules_triggered) or ("High Amount Anomaly" in rules_triggered)
     
     # 5. Insert transaction & result, update balance if safe
     transaction_id = execute_query(
