@@ -93,6 +93,8 @@ The server will start on `http://127.0.0.1:5000`.
 * **Regular User**: `user@test.com` / `user123` -> `http://127.0.0.1:5000/user.html`
 
 ## 6. Admin Setup (Security Policies)
+> **NOTE:** By default, international payments are not completely blocked (they just give a warning), and user 2 is not banned. To properly test Scenarios 6 and 7 below, you must complete these admin steps to enforce the strict security rules.
+
 1. Open `http://127.0.0.1:5000/admin.html` and log in as Admin.
 2. Click the **Security** link to open `security.html`.
 3. Toggle **Block International Payments** ON.
